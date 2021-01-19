@@ -1,1 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 50px 20px;
+    // grid-template-columns: repeat(1, 1fr);
+}
+.container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    /* display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 15px; */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* .row-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 15px;
+} */
+
+
+.col {
+    grid-column: span auto / -1;
+}
+.col-center {
+    justify-content: center;
+}
+.justify-bt {
+    justify-content: space-between;
+}
+.align-center { 
+    align-content: center;
+}
+@each $size, $abbr in (0, xs), (768px, sm), (992px, md), (1200px, lg) {
+    @media screen and (min-width: $size) {
+        @for $i from 1 through 12 {
+            .col-#{$abbr}-#{$i} {
+                // grid-column-end: span $i;
+                flex-basis: (100 / (12 / $i) ) * 1%;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .container {
+        max-width: 1110px;
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
